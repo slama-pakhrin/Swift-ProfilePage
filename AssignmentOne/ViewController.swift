@@ -7,10 +7,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController{
     
     let courseName : [String] = ["CPA", "BSD"]
-    let experienceYears : [String] = ["Freshy", "Around Two years", "More than 5 years"]
+    let experienceYears : [String] = ["around 1 year", "more than 2 years", "more than 5 years now"]
     let levelAs : [String] = ["Level1", "Level2", "Level3", "Level4", "Level5"]
     
     var courseDisplayName : String?
@@ -27,8 +27,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        output.text = "My name is \(nameField.text ?? "Salon"). I am in \(courseName[course.selectedSegmentIndex]) Level1 with the current GPA of \(gpaSlider.value) My background in iOS is \(experienceYears[experience.selectedSegmentIndex])"
+        nameField.placeholder = "Name"
+        level.selectedSegmentIndex = 2
+        updateOuput()
     }
     
     @IBAction func courseUpdate(_ sender: Any) {
@@ -59,9 +60,16 @@ class ViewController: UIViewController {
     @IBAction func sliderUpdate(_ sender: Any) {
         updateOuput()
     }
+    @IBAction func nameUpdate(_ sender: Any) {
+        updateOuput()
+    }
     
     func updateOuput(){
-        output.text = "My name is \(nameField.text ?? "Salon"). I am in \(courseName[course.selectedSegmentIndex]) Level1 with the current GPA of \(gpaSlider.value) My background in iOS is \(experienceYears[experience.selectedSegmentIndex])"
+        output.text = "My name is \( nameField.text ?? "Salon"). I am in \(courseName[course.selectedSegmentIndex]) \(levelAs[level.selectedSegmentIndex]) with the current GPA of \(gpaSlider.value). My background in iOS is \(experienceYears[experience.selectedSegmentIndex])."
+    }
+    
+    @IBAction func buttonPressed(_ sender: Any) {
+//        performSegue(withIdentifier: "push", sender: nil)
     }
     
 }
